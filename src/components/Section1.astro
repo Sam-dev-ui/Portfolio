@@ -7,31 +7,33 @@ const imageAlt = "Abstract technological background image";
   <div class="container">
     <div class="hero-about__grid">
       <div class="hero-about__content">
-        <span class="hero-about__eyebrow">Full-Stack Developer</span>
-        <h1 class="hero-about__title">Turning Complex Problems into Elegant Solutions</h1>
+        <span class="hero-about__eyebrow">Hello, I'm a</span>
+        <h1 class="hero-about__title">Full-Stack Developer_</h1>
         <p class="hero-about__text">
-          Physics graduate turned Full-Stack Developer with expertise in modern web technologies. 
-          Leveraging analytical thinking and technical skills to build high-performance applications 
-          that make a difference.
+          Physics graduate crafting elegant digital solutions through code.
         </p>
         <div class="hero-about__cta-group">
-          <a href="/projects" class="button button--primary">View My Work</a>
-          <a href="/contact" class="button button--secondary">Get in Touch</a>
+          <a href="/projects" class="button button--primary">Projects →</a>
+          <a href="/contact" class="button button--secondary">Contact</a>
         </div>
         <div class="hero-about__tech-stack">
-          <span class="tech-label">Tech Stack:</span>
-
+          <div class="tech-icons">
+            <!-- Add minimal tech icons -->
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">TypeScript</span>
+          </div>
         </div>
       </div>
       <div class="hero-about__image-wrapper">
         <img
           src={placeholderImage}
           alt={imageAlt}
+          class="hero-about__image"
           width="2069"
           height="1379"
           loading="eager"
           decoding="async"
-          class="hero-about__image"
         />
       </div>
     </div>
@@ -40,64 +42,63 @@ const imageAlt = "Abstract technological background image";
 
 <style>
   .hero-about {
-    padding-block: 6rem;
+    padding-block: 5rem;
     background-color: var(--clr-background);
     position: relative;
-    overflow: hidden;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin-inline: auto;
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
   }
 
   .hero-about__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
   }
 
   .hero-about__eyebrow {
-    display: inline-block;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--clr-primary);
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--clr-text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
   }
 
   .hero-about__title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.1;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1;
     margin-bottom: 1.5rem;
     color: var(--clr-text-heading);
+    font-weight: 700;
   }
 
   .hero-about__text {
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: 1.25rem;
+    line-height: 1.6;
     color: var(--clr-text-body);
     margin-bottom: 2rem;
-    max-width: 55ch;
+    max-width: 45ch;
   }
 
   .hero-about__cta-group {
     display: flex;
     gap: 1rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
   .button {
-    display: inline-flex;
-    padding: 0.875rem 1.75rem;
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
   }
 
   .button--primary {
@@ -106,57 +107,53 @@ const imageAlt = "Abstract technological background image";
   }
 
   .button--secondary {
-    background-color: transparent;
     color: var(--clr-text-heading);
-    border: 2px solid var(--clr-text-heading);
-  }
-
-  .hero-about__tech-stack {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .tech-label {
-    font-size: 0.875rem;
-    color: var(--clr-text-muted);
+    border: 1px solid var(--clr-text-heading);
   }
 
   .tech-icons {
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
-  .tech-icons img {
-    width: 24px;
-    height: 24px;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+  .tech-pill {
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    background-color: var(--clr-background-alt);
+    color: var(--clr-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 
-  .tech-icons img:hover {
-    opacity: 1;
+  .hero-about__image-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0.9;
+  }
+
+  .hero-about__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+  }
+
+  .hero-about__image:hover {
+    filter: grayscale(0%);
   }
 
   @media (min-width: 768px) {
     .hero-about__grid {
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
-    }
-
-    .hero-about__content {
-      order: 1;
-    }
-
-    .hero-about__image-wrapper {
-      order: 2;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
     }
   }
 
   @media (min-width: 1024px) {
     .hero-about {
-      padding-block: 8rem;
+      padding-block: 6rem;
     }
   }
 </style>

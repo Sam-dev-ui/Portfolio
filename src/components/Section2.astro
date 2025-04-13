@@ -1,44 +1,53 @@
 ---
-// src/components/SkillsSnapshot.astro
-
-// Structure skills data for easier iteration (optional but good practice)
 const skillsData = [
   {
     category: "Languages",
-    items: ["Python", "JavaScript", "TypeScript", "WEBGL", "C++", "C", "React Native", "Flutter"]
+    description: "Core programming languages I work with daily",
+    items: ["Python", "JavaScript", "TypeScript", "C++"],
+    proficiency: "Advanced"
   },
   {
     category: "Frontend",
-    items: ["React", "Next.js", "Astro.js", "Three.js", "R3F", "Tailwind", "HTML/CSS"]
+    description: "Building responsive & interactive user experiences",
+    items: ["React", "Next.js", "Astro.js", "Three.js", "Tailwind"],
+    proficiency: "Expert"
   },
   {
     category: "Backend",
-    items: ["Hono.js"]
+    description: "Server-side development & API architecture",
+    items: ["Node.js", "Hono.js", "RESTful APIs"],
+    proficiency: "Intermediate"
   },
   {
-    category: "Cloud & Databases",
-    items: ["Cloudflare (Workers, Pages, D1, KV)", "AWS (Lambda, S3)", "Google Cloud", "MongoDB", "Upstash Redis", "Hostinger VPS"]
-  },
-  {
-    category: "Tools & Tech",
-    items: ["Git", "Docker", "shadcn", "Figma", "VS Code", "Unity 3D", "Blender"]
+    category: "Cloud & Infrastructure",
+    description: "Deployment & scaling solutions",
+    items: ["Cloudflare", "AWS", "MongoDB", "Docker"],
+    proficiency: "Advanced"
   }
 ];
 ---
 
 <section id="skills" class="skills-snapshot">
   <div class="container">
-    <h2 class="skills-snapshot__title">Skills Snapshot</h2>
-    <div class="skills-snapshot__grid">
-      {skillsData.map(skillGroup => (
-        <div class="skills-snapshot__category-card">
-          <h3 class="skills-snapshot__category-title">{skillGroup.category}</h3>
-          <ul class="skills-snapshot__list">
-            {skillGroup.items.map(skill => (
-              <li class="skills-snapshot__item">{skill}</li>
+    <header class="section-header">
+      <h2 class="section-title">Technical Expertise</h2>
+      <p class="section-subtitle">A curated overview of my technical capabilities and tools I use to build solutions.</p>
+    </header>
+
+    <div class="skills-grid">
+      {skillsData.map(({ category, description, items, proficiency }) => (
+        <article class="skill-card">
+          <div class="skill-card__header">
+            <h3 class="skill-card__title">{category}</h3>
+            <span class="skill-card__badge">{proficiency}</span>
+          </div>
+          <p class="skill-card__description">{description}</p>
+          <ul class="skill-card__list">
+            {items.map(skill => (
+              <li class="skill-item">{skill}</li>
             ))}
           </ul>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -46,83 +55,118 @@ const skillsData = [
 
 <style>
   .skills-snapshot {
-    padding-block: 4rem;
-    background-color: var(--clr-surface); /* Slightly different background */
+    padding-block: 6rem;
+    background-color: var(--clr-surface);
   }
 
   .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin-inline: auto;
-    padding-inline: 1.5rem;
+    padding-inline: 2rem;
   }
 
-  .skills-snapshot__title {
+  .section-header {
     text-align: center;
+    max-width: 65ch;
+    margin-inline: auto;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
     color: var(--clr-text-heading);
-    margin-bottom: 2.5rem; /* More space below title */
-    font-size: 1.875rem; /* h2 */
-  }
-
-  .skills-snapshot__grid {
-    display: grid;
-    /* Responsive grid: automatically fit columns */
-    /* - Min width: 250px */
-    /* - Max width: 1fr (take up equal space) */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem; /* Gap between cards */
-  }
-
-  .skills-snapshot__category-card {
-    background-color: var(--clr-background); /* Card background */
-    padding: 1.5rem;
-    border-radius: var(--border-radius-md);
-    border: 1px solid var(--clr-border);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-fast);
-  }
-
-  .skills-snapshot__category-card:hover {
-     box-shadow: var(--shadow-md);
-  }
-
-  .skills-snapshot__category-title {
-    margin-top: 0;
     margin-bottom: 1rem;
-    color: var(--clr-primary-500); /* Use primary color for category titles */
-    font-size: 1.125rem; /* Slightly smaller than h4 */
-    font-weight: 600;
-    border-bottom: 1px solid var(--clr-border); /* Separator line */
-    padding-bottom: 0.5rem;
+    font-weight: 700;
   }
 
-  .skills-snapshot__list {
+  .section-subtitle {
+    color: var(--clr-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-card {
+    background-color: var(--clr-background);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--clr-border);
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  .skill-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .skill-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--clr-text-heading);
+    margin: 0;
+  }
+
+  .skill-card__badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    background-color: var(--clr-primary-50);
+    color: var(--clr-primary-700);
+  }
+
+  .skill-card__description {
+    color: var(--clr-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-card__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: flex; /* Arrange skills horizontally */
-    flex-wrap: wrap; /* Allow skills to wrap to the next line */
-    gap: 0.5rem; /* Space between skill items */
   }
 
-  .skills-snapshot__item {
-    background-color: var(--clr-neutral-100); /* Tag background */
-    color: var(--clr-neutral-800); /* Tag text */
-    padding: 0.25rem 0.75rem; /* Padding inside tag */
-    border-radius: var(--border-radius-sm);
-    font-size: 0.875rem; /* Slightly smaller font for tags */
-    line-height: 1.4;
-    border: 1px solid var(--clr-border);
-    white-space: nowrap; /* Prevent tags from breaking mid-word */
+  .skill-item {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-background-alt);
+    border-radius: 6px;
+    color: var(--clr-text-body);
+    transition: all 0.2s ease;
   }
 
-  /* Responsive Adjustments */
-  @media (min-width: 768px) {
-    .skills-snapshot__title {
-      font-size: 2.25rem; /* Larger title on desktop */
+  .skill-item:hover {
+    background-color: var(--clr-primary-50);
+    color: var(--clr-primary-700);
+  }
+
+  @media (max-width: 768px) {
+    .skills-snapshot {
+      padding-block: 4rem;
     }
-     .skills-snapshot__grid {
-        gap: 2rem; /* Increase gap on larger screens */
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .skill-card {
+      padding: 1.5rem;
     }
   }
-
 </style>

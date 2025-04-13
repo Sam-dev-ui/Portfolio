@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* === global.css === */
+/* ...existing code... */
 
 :root {
     /* ------------------------- */
@@ -8,31 +8,31 @@
     /* ------------------------- */
   
     /* Primary Color (Branding, Links, Buttons) */
-    --clr-primary-500: #2563eb; /* blue-600 */
-    --clr-primary-600: #1d4ed8; /* blue-700 (darker for hover/active) */
-    --clr-primary-100: #dbeafe; /* blue-100 (very light for backgrounds) */
+    --clr-primary-500: #3b82f6; /* blue-500 - brightened for dark theme */
+    --clr-primary-600: #60a5fa; /* blue-400 - brighter for hover/active */
+    --clr-primary-100: #1e3a8a; /* blue-900 (darker for backgrounds) */
   
     /* Secondary Color (Subtle highlights, borders) */
     --clr-secondary-400: #60a5fa; /* blue-400 */
-    --clr-secondary-200: #bfdbfe; /* blue-200 */
+    --clr-secondary-200: #1d4ed8; /* blue-700 */
   
     /* Accent Color (Call to actions, highlights) */
     --clr-accent-500: #f97316; /* orange-500 */
-    --clr-accent-600: #ea580c; /* orange-600 (darker for hover/active) */
+    --clr-accent-600: #fb923c; /* orange-400 (brighter for dark theme) */
   
     /* Neutral/Greyscale (Backgrounds, Text, Borders) */
-    --clr-neutral-50:  #f8fafc; /* slate-50 (near white background) */
-    --clr-neutral-100: #f1f5f9; /* slate-100 (slightly darker bg/surface) */
-    --clr-neutral-200: #e2e8f0; /* slate-200 (light borders) */
+    --clr-neutral-50:  #020617; /* slate-950 (darkest background) */
+    --clr-neutral-100: #0f172a; /* slate-900 (dark surface) */
+    --clr-neutral-200: #1e293b; /* slate-800 (dark borders) */
     --clr-neutral-400: #94a3b8; /* slate-400 (muted text) */
-    --clr-neutral-600: #475569; /* slate-600 (medium text) */
-    --clr-neutral-800: #1e293b; /* slate-800 (headings, strong text) */
-    --clr-neutral-950: #0f172a; /* slate-950 (very dark text/elements) */
+    --clr-neutral-600: #cbd5e1; /* slate-300 (medium text) */
+    --clr-neutral-800: #e2e8f0; /* slate-200 (light text) */
+    --clr-neutral-950: #f8fafc; /* slate-50 (brightest text) */
   
     /* Base Colors (Directly used or derived) */
     --clr-background: var(--clr-neutral-50);
-    --clr-surface: var(--clr-neutral-100); /* For cards, modals etc. */
-    --clr-text-body: var(--clr-neutral-800);
+    --clr-surface: var(--clr-neutral-100);
+    --clr-text-body: var(--clr-neutral-600);
     --clr-text-muted: var(--clr-neutral-400);
     --clr-text-heading: var(--clr-neutral-950);
     --clr-text-link: var(--clr-primary-500);
@@ -42,43 +42,25 @@
   
     /* Specific Element Colors */
     --clr-button-primary-bg: var(--clr-primary-500);
-    --clr-button-primary-text: white;
+    --clr-button-primary-text: var(--clr-neutral-50);
     --clr-button-primary-bg-hover: var(--clr-primary-600);
   
     --clr-button-accent-bg: var(--clr-accent-500);
-    --clr-button-accent-text: white;
+    --clr-button-accent-text: var(--clr-neutral-50);
     --clr-button-accent-bg-hover: var(--clr-accent-600);
-  
-    /* ------------------------- */
-    /* Other Globals (Optional)  */
-    /* ------------------------- */
-    --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --font-family-serif: Georgia, 'Times New Roman', Times, serif;
-    --font-family-mono: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.5rem;
-    --border-radius-lg: 0.75rem;
-  
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  
-    --transition-fast: 150ms ease-in-out;
-    --transition-std: 300ms ease-in-out;
-  }
-  
-  /* ------------------------- */
-  /* Basic Resets & Defaults   */
-  /* ------------------------- */
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  body {
+}
+
+/* Update shadow variables for dark mode */
+:root {
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
+/* ...existing code... */
+
+/* Update body styles for better dark mode readability */
+body {
     margin: 0;
     font-family: var(--font-family-sans);
     line-height: 1.6;
@@ -86,60 +68,22 @@
     color: var(--clr-text-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    color: var(--clr-text-heading);
-    line-height: 1.2;
-    font-weight: 600; /* Or adjust as needed */
-  }
-  
-  h1 { font-size: 2.25rem; }
-  h2 { font-size: 1.875rem; }
-  h3 { font-size: 1.5rem; }
-  h4 { font-size: 1.25rem; }
-  
-  p {
-    margin-top: 0;
-    margin-bottom: 1em;
-  }
-  
-  a {
-    color: var(--clr-text-link);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-  
-  a:hover,
-  a:focus {
-    color: var(--clr-text-link-hover);
-    text-decoration: underline;
-  }
-  
-  img, svg, video, canvas, audio, iframe, embed, object {
-      display: block;
-      max-width: 100%;
-  }
-  
-  /* Optional: Add a basic dark mode stub */
-  /*
-  @media (prefers-color-scheme: dark) {
-    :root {
-      /* Redefine colors for dark mode */
-      /* Example:
-      --clr-background: var(--clr-neutral-950);
-      --clr-surface: var(--clr-neutral-800);
-      --clr-text-body: var(--clr-neutral-100);
-      --clr-text-muted: var(--clr-neutral-400);
-      --clr-text-heading: white;
-      --clr-border: var(--clr-neutral-600);
-      */
-  /* You would need to define all relevant dark mode colors here */
-  /*
-    }
-  }
-  */
-  
-  /* Add application-specific styles below or in separate files */
+}
+
+/* Adjust image brightness for dark mode */
+img {
+    opacity: 0.9;
+    transition: opacity var(--transition-std);
+}
+
+img:hover {
+    opacity: 1;
+}
+
+/* Optional: Add selection color */
+::selection {
+    background-color: var(--clr-primary-100);
+    color: var(--clr-neutral-950);
+}
+
+/* ...rest of existing code... */

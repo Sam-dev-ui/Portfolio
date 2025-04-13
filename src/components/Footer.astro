@@ -1,0 +1,196 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { name: 'GitHub', url: 'https://github.com/yourusername', icon: 'github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername', icon: 'linkedin' },
+  { name: 'Twitter', url: 'https://twitter.com/yourusername', icon: 'twitter' }
+];
+
+const footerLinks = [
+  { text: 'Home', href: '/' },
+  { text: 'Projects', href: '/projects' },
+  { text: 'About', href: '/about' },
+  { text: 'Contact', href: '/contact' }
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-branding">
+        <h2 class="footer-logo">Portfolio</h2>
+        <p class="footer-tagline">
+          Full-stack developer crafting digital experiences
+        </p>
+      </div>
+
+      <nav class="footer-nav">
+        <h3 class="footer-nav-title">Quick Links</h3>
+        <ul class="footer-links">
+          {footerLinks.map(link => (
+            <li>
+              <a href={link.href} class="footer-link">{link.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="footer-social">
+        <h3 class="footer-nav-title">Connect</h3>
+        <ul class="social-links">
+          {socialLinks.map(({ name, url, icon }) => (
+            <li>
+              <a href={url} class="social-link" target="_blank" rel="noopener noreferrer">
+                <span class="sr-only">{name}</span>
+                <i class={`icon-${icon}`}></i>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {currentYear} Your Name. All rights reserved.
+      </p>
+      <p class="credits">
+        Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--clr-surface);
+    border-top: 1px solid var(--clr-border);
+    padding-block: 4rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    color: var(--clr-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .footer-nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links,
+  .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-link {
+    color: var(--clr-text-body);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--clr-primary-500);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--clr-background);
+    color: var(--clr-text-body);
+    transition: all 0.2s ease;
+  }
+
+  .social-link:hover {
+    background-color: var(--clr-primary-500);
+    color: var(--clr-background);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--clr-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .copyright,
+  .credits {
+    color: var(--clr-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .credits a {
+    color: var(--clr-primary-500);
+    text-decoration: none;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding-block: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,162 @@
+---
+// src/components/ContributionsAchievements.astro
+
+type Achievement = {
+  title: string;
+  description: string;
+  link?: string | null;
+};
+
+const achievementsData: Achievement[] = [
+  {
+    title: "Google Summer of Code (GSoC) 2024",
+    description: "Contributed to Oxiton Foundation by developing a dynamic dashboard.",
+    // Optional: Add a link if relevant
+    // link: "https://summerofcode.withgoogle.com/..."
+  },
+  {
+    title: "Kaggle Competitions",
+    description: "Achieved Top 26% in Capture The Flag 2023; Participated in the Great Barrier Reef Competition using YOLOv5.",
+    // link: "https://www.kaggle.com/your-profile"
+  },
+  {
+    title: "Google Code Jam 2021",
+    description: "Participated with valid submissions in the competitive programming contest.",
+    link: null, // No link available
+  },
+  {
+    title: "Project Li-Fi",
+    description: "Won First Place in Hi-Tech College competition (during High School).",
+    link: null, // No link available
+  }
+];
+
+// Sort data if needed (e.g., by date or importance)
+// Assuming pre-sorted order for now.
+---
+
+<section id="contributions" class="contributions-achievements">
+  <div class="container">
+    <h2 class="contributions-achievements__title">Contributions & Achievements</h2>
+    <ul class="contributions-achievements__list">
+      {achievementsData.map((item) => (
+        <li class="achievement-item">
+          <h3 class="achievement-item__title">{item.title}</h3>
+          <p class="achievement-item__description">{item.description}</p>
+          {item.link && (
+            <a href={item.link} target="_blank" rel="noopener noreferrer" class="achievement-item__link">
+              Learn More
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="icon">
+                 <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
+                 <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.25 4.806V8.75a.75.75 0 0 0 1.5 0V3.25a.75.75 0 0 0-.75-.75H12a.75.75 0 0 0 0 1.5h3.944L6.14 11.69a.75.75 0 0 0 .054 1.063Z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contributions-achievements {
+    padding-block: 4rem;
+    background-color: var(--clr-background); /* Or var(--clr-surface) */
+  }
+
+  .container {
+    max-width: 900px; /* Consistent with text-heavy sections */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .contributions-achievements__title {
+    text-align: center;
+    color: var(--clr-text-heading);
+    margin-bottom: 2.5rem;
+    font-size: 1.875rem; /* h2 */
+  }
+
+  .contributions-achievements__list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem; /* Space between list items */
+  }
+
+  .achievement-item {
+    position: relative; /* For potential pseudo-elements */
+    padding-left: 1.75rem; /* Space for the decorative element */
+    border-left: 3px solid var(--clr-secondary-200); /* Subtle left border */
+    padding-block: 0.5rem; /* Add some vertical padding */
+    transition: border-color var(--transition-fast);
+  }
+
+   /* Optional: Add a small circle marker */
+  /* .achievement-item::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: calc(0.5rem + 0.6em); /* Align roughly with first line of text */
+    /* transform: translateY(-50%); */
+    /* width: 0.75rem;
+    height: 0.75rem;
+    background-color: var(--clr-secondary-400);
+    border-radius: 50%;
+    border: 2px solid var(--clr-background); /* Match section background */
+  /* } */
+
+  .achievement-item:hover {
+     border-left-color: var(--clr-primary-500); /* Highlight border on hover */
+  }
+
+
+  .achievement-item__title {
+    margin: 0 0 0.35rem 0;
+    color: var(--clr-text-heading);
+    font-size: 1.125rem; /* Slightly larger than body text */
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .achievement-item__description {
+    margin: 0 0 0.5rem 0; /* Add space before link if present */
+    color: var(--clr-text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .achievement-item__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--clr-primary-500);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+   .achievement-item__link .icon {
+     width: 1.1em;
+     height: 1.1em;
+   }
+
+  .achievement-item__link:hover,
+  .achievement-item__link:focus {
+    color: var(--clr-primary-600);
+    text-decoration: underline;
+  }
+
+  /* --- Responsive Adjustments --- */
+
+  @media (min-width: 768px) {
+    .contributions-achievements__title {
+      font-size: 2.25rem; /* Larger title */
+    }
+     .contributions-achievements__list {
+        gap: 2rem; /* Increase gap */
+     }
+  }
+</style>

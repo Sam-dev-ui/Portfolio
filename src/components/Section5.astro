@@ -1,0 +1,172 @@
+---
+// src/components/Education.astro
+
+const educationData = [
+  {
+    institution: "University of Delhi",
+    degree: "Masters of Physics",
+    status: "Pursuing", // Use 'status' for ongoing or GPA for completed
+    dates: "2022 - 2024", // Expected or actual range
+    gpa: null // Add GPA if relevant upon completion
+  },
+  {
+    institution: "University of Delhi",
+    degree: "Bachelor's of Physics",
+    status: null, // Completed, so status is null
+    dates: "2019 - 2022",
+    gpa: "8.58 CGPA" // Add relevant grade/score
+  }
+];
+
+// Sort data if needed (e.g., reverse chronological)
+// For now, assuming the array is ordered as desired.
+---
+
+<section id="education" class="education-section">
+  <div class="container">
+    <h2 class="education-section__title">Education</h2>
+    <div class="education-section__list">
+      {educationData.map((edu, index) => (
+        <article class="education-entry">
+          <header class="education-entry__header">
+            <div class="education-entry__main-info">
+              <h3 class="education-entry__degree">{edu.degree}</h3>
+              <p class="education-entry__institution">{edu.institution}</p>
+            </div>
+            <div class="education-entry__meta-info">
+              <p class="education-entry__dates">{edu.dates}</p>
+              {edu.gpa && <p class="education-entry__gpa">{edu.gpa}</p>}
+              {edu.status && <p class="education-entry__status">{edu.status}</p>}
+            </div>
+          </header>
+          {/* Optional: Add description if needed */}
+          {/* <p class="education-entry__description">Optional details here...</p> */}
+
+          {/* Add a divider line unless it's the last item */}
+          {index < educationData.length - 1 && <hr class="education-entry__divider" />}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .education-section {
+    padding-block: 4rem;
+    background-color: var(--clr-surface); /* Match skills or choose bg */
+  }
+
+  .container {
+    max-width: 900px; /* Consistent with experience */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .education-section__title {
+    text-align: center;
+    color: var(--clr-text-heading);
+    margin-bottom: 2.5rem;
+    font-size: 1.875rem; /* h2 */
+  }
+
+  .education-section__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Initial gap */
+  }
+
+  .education-entry {
+    /* Styling similar to experience entry for consistency */
+  }
+
+  .education-entry__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem 1.5rem; /* Row gap, Column gap */
+    margin-bottom: 0.5rem; /* Reduced margin as no description usually */
+  }
+
+  .education-entry__main-info {
+    flex-grow: 1;
+  }
+
+  .education-entry__degree {
+    margin: 0 0 0.15rem 0;
+    color: var(--clr-text-heading);
+    font-size: 1.125rem; /* Slightly smaller than job title */
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  .education-entry__institution {
+    margin: 0;
+    color: var(--clr-neutral-600); /* Neutral color for institution */
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .education-entry__meta-info {
+     text-align: right; /* Align dates/gpa/status right */
+     flex-shrink: 0; /* Prevent shrinking */
+     padding-top: 0.15rem; /* Align baseline */
+  }
+
+  .education-entry__dates,
+  .education-entry__gpa,
+  .education-entry__status {
+    margin: 0;
+    color: var(--clr-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.4; /* Ensure consistent line height */
+  }
+
+  .education-entry__gpa {
+    /* Optional: Make GPA slightly more prominent */
+    /* color: var(--clr-neutral-600); */
+  }
+   .education-entry__status {
+    /* Optional: Style status differently, e.g., italic */
+     font-style: italic;
+   }
+
+  /* Optional description styling */
+  /* .education-entry__description { ... } */
+
+  .education-entry__divider {
+      border: none;
+      height: 1px;
+      background-color: var(--clr-border);
+      margin-top: 1.5rem;
+  }
+
+
+  /* --- Responsive Adjustments --- */
+
+  @media (min-width: 768px) {
+    .education-section__title {
+      font-size: 2.25rem; /* Larger title */
+    }
+     .education-section__list {
+        gap: 2rem; /* Increase gap */
+     }
+     .education-entry__divider {
+        margin-top: 2rem;
+     }
+  }
+
+   @media (max-width: 480px) { /* Smaller mobile screens */
+     .education-entry__header {
+       flex-direction: column;
+       align-items: flex-start;
+       gap: 0.25rem;
+     }
+     .education-entry__meta-info {
+        text-align: left; /* Align left on mobile */
+        padding-top: 0.25rem; /* Adjust spacing */
+     }
+   }
+</style>

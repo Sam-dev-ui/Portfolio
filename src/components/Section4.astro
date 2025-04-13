@@ -1,0 +1,167 @@
+---
+// src/components/ProfessionalExperience.astro
+
+const experienceData = [
+  {
+    title: "Lead Developer",
+    company: "Craft Presence",
+    dates: "Jun 2024 - Present",
+    description: "Building and deploying websites (portfolios, e-commerce, restaurant sites) using Astro.js, WordPress, Webador, and Hostinger. Developed custom Shopify Liquid code."
+  },
+  {
+    title: "Senior Reviewer/Attempter",
+    company: "Outlier AI",
+    dates: "Dec 2023 - Present", // Corrected start date based on logic
+    description: "Training and evaluating advanced GPT models via RAG pipelines, focusing on complex reasoning and data quality assurance."
+  },
+  {
+    title: "Freelancer",
+    company: "Upwork",
+    dates: "Aug 2024 - Present",
+    description: "Delivered client projects including a Matter.js game and Zapier automation for ClickUp task management."
+  }
+];
+// Sort by start date descending (most recent first) - implement actual date parsing for robust sorting if needed
+// This simple string sort works okay for "Mon YYYY" format if consistent
+// A more robust solution would parse dates properly.
+// For now, assuming the array is pre-sorted as desired.
+---
+
+<section id="experience" class="professional-experience">
+  <div class="container">
+    <h2 class="professional-experience__title">Professional Experience</h2>
+    <div class="professional-experience__list">
+      {experienceData.map((job, index) => (
+        <article class="experience-entry">
+          <header class="experience-entry__header">
+            <div class="experience-entry__main-info">
+              <h3 class="experience-entry__job-title">{job.title}</h3>
+              <p class="experience-entry__company">{job.company}</p>
+            </div>
+            <p class="experience-entry__dates">{job.dates}</p>
+          </header>
+          <p class="experience-entry__description">{job.description}</p>
+          {/* Add a divider line unless it's the last item */}
+          {index < experienceData.length - 1 && <hr class="experience-entry__divider" />}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .professional-experience {
+    padding-block: 4rem;
+    background-color: var(--clr-background); /* Or var(--clr-surface) */
+  }
+
+  .container {
+    max-width: 900px; /* Slightly narrower container might suit text content */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .professional-experience__title {
+    text-align: center;
+    color: var(--clr-text-heading);
+    margin-bottom: 2.5rem;
+    font-size: 1.875rem; /* h2 */
+  }
+
+  .professional-experience__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Initial gap, increased by entry padding/margin */
+  }
+
+  .experience-entry {
+     /* No background needed if section background is different,
+        or use var(--clr-surface) if section is var(--clr-background) */
+     /* padding: 1.5rem; */ /* Add padding if you want card-like entries */
+     /* border: 1px solid var(--clr-border); */ /* Add border for card-like entries */
+     /* border-radius: var(--border-radius-md); */ /* Add radius for card-like entries */
+     /* box-shadow: var(--shadow-sm); */ /* Add shadow for card-like entries */
+  }
+
+  .experience-entry__header {
+    display: flex;
+    flex-wrap: wrap; /* Allow dates to wrap below on small screens */
+    justify-content: space-between; /* Push dates to the right */
+    align-items: flex-start; /* Align items to the top */
+    gap: 0.5rem 1.5rem; /* Row gap, Column gap */
+    margin-bottom: 0.75rem;
+  }
+
+  .experience-entry__main-info {
+    /* Takes up available space */
+    flex-grow: 1;
+  }
+
+  .experience-entry__job-title {
+    margin: 0 0 0.15rem 0; /* Reset margin, add tiny space below */
+    color: var(--clr-text-heading);
+    font-size: 1.25rem; /* h4 size */
+    line-height: 1.3;
+  }
+
+  .experience-entry__company {
+    margin: 0;
+    color: var(--clr-primary-500); /* Use primary color for company */
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .experience-entry__dates {
+    margin: 0;
+    color: var(--clr-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent dates from wrapping */
+    padding-top: 0.15rem; /* Align baseline slightly better with title */
+    flex-shrink: 0; /* Prevent dates from shrinking */
+  }
+
+  .experience-entry__description {
+    color: var(--clr-text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0; /* Reset default paragraph margin */
+    padding-left: 0.5rem; /* Optional slight indent */
+    border-left: 2px solid var(--clr-secondary-200); /* Subtle decorative line */
+  }
+
+  .experience-entry__divider {
+      border: none;
+      height: 1px;
+      background-color: var(--clr-border);
+      margin-top: 1.5rem; /* Space before the next entry */
+      /* margin-bottom: 1.5rem; If gap on list is removed */
+  }
+
+
+  /* --- Responsive Adjustments --- */
+
+  @media (min-width: 768px) {
+    .professional-experience__title {
+      font-size: 2.25rem; /* Larger title */
+    }
+     .professional-experience__list {
+        gap: 2rem; /* Increase gap */
+     }
+     .experience-entry__divider {
+        margin-top: 2rem;
+     }
+  }
+
+   @media (max-width: 480px) { /* Smaller mobile screens */
+     .experience-entry__header {
+       flex-direction: column; /* Stack header items vertically */
+       align-items: flex-start; /* Align all left */
+       gap: 0.25rem; /* Reduce gap */
+     }
+     .experience-entry__dates {
+        padding-top: 0; /* Reset padding */
+     }
+   }
+
+</style>

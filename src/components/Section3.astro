@@ -1,0 +1,233 @@
+---
+// src/components/FeaturedProjects.astro
+const placeholderImage = "https://images.unsplash.com/photo-1742943892619-501567da0c62?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+const projectsData = [
+  {
+    title: "FlowInbox",
+    description: "Smart AI Gmail sorter using Astro.js, Hono.js, and Cloudflare Workers with Google Pub/Sub integration.",
+    imageUrl: placeholderImage, // Replace with project-specific image later
+    liveUrl: null, // Add live URL or remove link
+    codeUrl: "#" // Add code URL or remove link
+  },
+  {
+    title: "SaaS Barcode Generator",
+    description: "(In Progress) Bulk barcode generation tool for WooCommerce stores using Astro.js and React.",
+    imageUrl: placeholderImage, // Replace with project-specific image later
+    liveUrl: null, // Add live URL or remove link
+    codeUrl: "#" // Add code URL or remove link
+  },
+  {
+    title: "What A Weather",
+    description: "Full-stack weather web app built with Next.js (Frontend & Backend), MongoDB, and OpenWeatherMap API.",
+    imageUrl: placeholderImage, // Replace with project-specific image later
+    liveUrl: "#", // Add live URL or remove link
+    codeUrl: "#" // Add code URL or remove link
+  },
+  {
+    title: "WEBGL & Algorithmic Art",
+    description: "Explored shader programming, raymarching, SDFs, and created generative art using JavaScript & WEBGL on FxHash.",
+    imageUrl: placeholderImage, // Replace with project-specific image later
+    liveUrl: "https://www.fxhash.xyz/u/Username", // Example link, replace or remove
+    codeUrl: null // Add code URL or remove link
+  },
+  {
+    title: "Physics Simulations",
+    description: "Developed Python/JavaScript simulations for phenomena like Double Pendulums, Lorentz Attractors, and Projectile Trajectories using Pygame, Tkinter, and Lagrangian mechanics.",
+    imageUrl: placeholderImage, // Replace with project-specific image later
+    liveUrl: null, // Add live URL or remove link
+    codeUrl: "#" // Add code URL or remove link
+  }
+];
+---
+
+<section id="projects" class="featured-projects">
+  <div class="container">
+    <h2 class="featured-projects__title">Featured Projects</h2>
+    <div class="featured-projects__grid">
+      {projectsData.map((project) => (
+        <article class="project-card">
+          <div class="project-card__image-wrapper">
+            <img
+              src={project.imageUrl}
+              alt={`Screenshot or visual representation of ${project.title}`}
+              width="2069"
+              height="1379"
+              loading="lazy"
+              decoding="async"
+              class="project-card__image"
+            />
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">{project.title}</h3>
+            <p class="project-card__description">{project.description}</p>
+            <div class="project-card__links">
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="project-card__link project-card__link--live">
+                  Live Demo
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="icon">
+                    <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.25 4.806V8.75a.75.75 0 0 0 1.5 0V3.25a.75.75 0 0 0-.75-.75H12a.75.75 0 0 0 0 1.5h3.944L6.14 11.69a.75.75 0 0 0 .054 1.063Z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              )}
+              {project.codeUrl && (
+                <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" class="project-card__link project-card__link--code">
+                  Source Code
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="icon">
+                    <path fill-rule="evenodd" d="M6.28 5.22a.75.75 0 0 1 0 1.06L2.56 10l3.72 3.72a.75.75 0 0 1-1.06 1.06L.97 10.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Zm7.44 0a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L17.44 10l-3.72-3.72a.75.75 0 0 1 0-1.06ZM11.378 2.03c.17-.386.56-.63.992-.63h.01c.431 0 .82.243.991.63l2.98 6.697a.75.75 0 0 1-1.342.598L14.02 7.73l-1.193 7.955a.75.75 0 0 1-1.48-.222l1.193-7.955-1.004 1.506a.75.75 0 1 1-1.298-.866l2.979-6.697Z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-projects {
+    padding-block: 4rem;
+    background-color: var(--clr-background); /* Or var(--clr-surface) */
+  }
+
+  .container {
+    max-width: 1200px; /* Slightly wider for project grid */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .featured-projects__title {
+    text-align: center;
+    color: var(--clr-text-heading);
+    margin-bottom: 2.5rem;
+    font-size: 1.875rem; /* h2 */
+  }
+
+  .featured-projects__grid {
+    display: grid;
+    /* Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop */
+    grid-template-columns: 1fr; /* Default: 1 column */
+    gap: 2rem; /* Gap between cards */
+  }
+
+  .project-card {
+    background-color: var(--clr-surface); /* Card background */
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--clr-border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden; /* Keep image corners rounded */
+    display: flex; /* Use flex for better control over content */
+    flex-direction: column; /* Stack image and content vertically */
+    transition: box-shadow var(--transition-std), transform var(--transition-std);
+  }
+
+  .project-card:hover {
+     box-shadow: var(--shadow-lg);
+     transform: translateY(-4px); /* Subtle lift effect */
+  }
+
+  .project-card__image-wrapper {
+    aspect-ratio: 16 / 9; /* Common aspect ratio for project images */
+    background-color: var(--clr-neutral-200); /* Placeholder bg while loading */
+  }
+
+  .project-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, might crop */
+  }
+
+  .project-card__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to push links to bottom */
+  }
+
+  .project-card__title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--clr-text-heading);
+    font-size: 1.25rem; /* h4 */
+  }
+
+  .project-card__description {
+    color: var(--clr-text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Pushes links down */
+  }
+
+  .project-card__links {
+    margin-top: auto; /* Pushes links to the bottom */
+    padding-top: 1rem; /* Space above links */
+    border-top: 1px solid var(--clr-border); /* Separator line */
+    display: flex;
+    flex-wrap: wrap; /* Wrap links if they don't fit */
+    gap: 1rem; /* Space between links */
+    align-items: center;
+  }
+
+  .project-card__link {
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 0.4rem; /* Space between text and icon */
+    color: var(--clr-primary-500); /* Link color */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+
+  .project-card__link .icon {
+    width: 1.1em; /* Relative size to font */
+    height: 1.1em;
+  }
+
+  .project-card__link:hover,
+  .project-card__link:focus {
+    color: var(--clr-primary-600); /* Darker link color on hover */
+    text-decoration: underline;
+  }
+
+  /* Use accent color for live demo link? Optional */
+  /* .project-card__link--live {
+    color: var(--clr-accent-500);
+  }
+  .project-card__link--live:hover,
+  .project-card__link--live:focus {
+    color: var(--clr-accent-600);
+  } */
+
+
+  /* --- Responsive Adjustments --- */
+
+  @media (min-width: 640px) { /* Small tablets and up */
+    .featured-projects__grid {
+       /* Fit as many as possible, min 300px */
+       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) { /* Tablets and up */
+    .featured-projects__title {
+      font-size: 2.25rem; /* Larger title on desktop */
+    }
+     .featured-projects__grid {
+        gap: 2.5rem; /* Increase gap slightly */
+    }
+  }
+
+  /* Optional: Limit to max 3 columns on large screens if auto-fit makes too many */
+  /* @media (min-width: 1024px) {
+    .featured-projects__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  } */
+
+</style>

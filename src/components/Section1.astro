@@ -6,26 +6,27 @@ const imageAlt = "Abstract technological background image";
 <section id="about" class="hero-about">
   <div class="container">
     <div class="hero-about__grid">
-      <div class="hero-about__content">
-        <span class="hero-about__eyebrow">Hello, I'm a</span>
-        <h1 class="hero-about__title">Full-Stack Developer_</h1>
-        <p class="hero-about__text">
+      <div class="hero-about__content fade-in">
+        <span class="hero-about__eyebrow slide-up delay-1">Hello, I'm a</span>
+        <h1 class="hero-about__title slide-up delay-2">
+          Full-Stack Developer<span class="cursor">_</span>
+        </h1>
+        <p class="hero-about__text slide-up delay-3">
           Physics graduate crafting elegant digital solutions through code.
         </p>
-        <div class="hero-about__cta-group">
-          <a href="/projects" class="button button--primary">Projects →</a>
-          <a href="/contact" class="button button--secondary">Contact</a>
+        <div class="hero-about__cta-group slide-up delay-4">
+          <a href="/projects" class="button  hover-effect">Projects →</a>
+          <a href="/contact" class="button button--secondary hover-effect">Contact</a>
         </div>
-        <div class="hero-about__tech-stack">
+        <div class="hero-about__tech-stack slide-up delay-5">
           <div class="tech-icons">
-            <!-- Add minimal tech icons -->
-            <span class="tech-pill">React</span>
-            <span class="tech-pill">Node.js</span>
-            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill hover-effect">React</span>
+            <span class="tech-pill hover-effect">Node.js</span>
+            <span class="tech-pill hover-effect">TypeScript</span>
           </div>
         </div>
       </div>
-      <div class="hero-about__image-wrapper">
+      <div class="hero-about__image-wrapper fade-in delay-4">
         <img
           src={placeholderImage}
           alt={imageAlt}
@@ -156,4 +157,153 @@ const imageAlt = "Abstract technological background image";
       padding-block: 6rem;
     }
   }
+
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Base Animation Classes */
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  /* Animation Delays */
+  .delay-1 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-2 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-3 {
+    animation-delay: 0.6s;
+  }
+
+  .delay-4 {
+    animation-delay: 0.8s;
+  }
+
+  .delay-5 {
+    animation-delay: 1s;
+  }
+
+  /* Cursor Animation */
+  .cursor {
+    display: inline-block;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  /* Hover Animations */
+  .hover-effect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .button.hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .tech-pill.hover-effect:hover {
+    transform: translateY(-2px);
+    background-color: var(--clr-primary-500);
+    color: var(--clr-background);
+  }
+
+  .hero-about__image {
+    transition: all 0.5s ease;
+  }
+
+  .hero-about__image:hover {
+    transform: scale(1.02);
+    filter: grayscale(0%);
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .slide-up,
+    .cursor {
+      animation: none;
+      opacity: 1;
+    }
+
+    .hover-effect:hover,
+    .hero-about__image:hover {
+      transform: none;
+    }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero-about__content {
+      text-align: center;
+    }
+
+    .hero-about__cta-group {
+      justify-content: center;
+    }
+
+    .tech-icons {
+      justify-content: center;
+    }
+  }
 </style>
+
+<script>
+    // Intersection Observer for scroll-based animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "50px",
+    };
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.visibility = "visible";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+  
+    // Initialize animations when DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      const animatedElements = document.querySelectorAll(
+        ".fade-in, .slide-up"
+      );
+  
+      animatedElements.forEach((el) => {
+        el.style.visibility = "hidden";
+        observer.observe(el);
+      });
+    });
+  </script>
